@@ -127,6 +127,22 @@ public class Picture extends SimplePicture
     }
   }
 
+  /** Method to set the green and red to 0 */
+  public void grayscale()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        int ave = (pixelObj.getGreen() + pixelObj.getRed() + pixelObj.getBlue())/3;
+        pixelObj.setGreen(ave);
+        pixelObj.setRed(ave);
+        pixelObj.setBlue(ave);
+      }
+    }
+  }
+
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
