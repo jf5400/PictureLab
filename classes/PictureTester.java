@@ -122,7 +122,31 @@ public class PictureTester
     beach.explore();
   }
 
-  /** Main method for testing.  Every class can have a main
+  /** Method to test Negate */
+  public static void testCopy()
+  {
+    Picture beach = new Picture("beach.jpg");
+    Picture other = new Picture("flower2.jpg");
+    beach.explore();
+    beach.copy(other, 20, 20, 100, 100);
+    beach.explore();
+  }
+
+    /** Method to test myCollage*/
+    public static void testmyCollage()
+    {
+        Picture beach = new Picture("beach.jpg");
+        Picture other = new Picture("flower1.jpg");
+        Picture another = new Picture("flower2.jpg");
+        beach.explore();
+
+        beach.myCollage(beach, other, another);
+        beach.explore();
+        other.explore();
+        another.explore();
+    }
+
+    /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
   {
@@ -142,10 +166,11 @@ public class PictureTester
     //testmirrorHorizontalBotToTop();
     //testMirrorTemple();
     //testMirrorArms();
-    testMirrorGull();
+    //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
+      testmyCollage();
     //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
