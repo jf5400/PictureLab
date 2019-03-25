@@ -247,6 +247,29 @@ public class Picture extends SimplePicture
     System.out.println(count);
   }
 
+  /** Mirror just part of a picture of a the snowman */
+  public void mirrorGull()
+  {
+    Pixel original = null;
+    Pixel copy = null;
+
+    Pixel[][] pixels = this.getPixels2D();
+
+    // loop through the rows
+    for (int row = 225; row < 330; row++)
+    {
+      // loop from 13 to just before the mirror point
+      for (int col = 229; col < 350; col++)
+      {
+        // Left arm
+        original = pixels[row][col];
+        copy = pixels[row][col+150];
+        copy.setColor(original.getColor());
+
+      }
+    }
+  }
+
   /** Mirror just part of a picture of a temple */
   public void mirrorArms()
   {
@@ -254,7 +277,6 @@ public class Picture extends SimplePicture
     Pixel bottomPixel1 = null;
     Pixel topPixel2 = null;
     Pixel bottomPixel2 = null;
-    int count = 0;
     Pixel[][] pixels = this.getPixels2D();
 
     // loop through the rows
@@ -275,7 +297,7 @@ public class Picture extends SimplePicture
       }
     }
   }
-  
+
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the
     * current picture
