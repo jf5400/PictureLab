@@ -360,12 +360,6 @@ public class Picture extends SimplePicture
     }
   }
 
-  public void myCollage(Picture pic1, Picture pic2, Picture pic3){
-    pic1.mirrorHorizontal();
-    pic2.zeroBlue();
-    pic3.grayscale();
-  }
-
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
@@ -391,22 +385,39 @@ public class Picture extends SimplePicture
   {
     Pixel leftPixel = null;
     Pixel rightPixel = null;
+    Pixel topPixel = null;
+    Pixel bottomPixel = null;
     Pixel[][] pixels = this.getPixels2D();
     Color rightColor = null;
-    for (int row = 0; row < pixels.length; row++)
-    {
-      for (int col = 0; 
-           col < pixels[0].length-1; col++)
-      {
+    Color bottomColor =null;
+    for (int row = 0; row < pixels.length; row++) {
+      for (int col = 0;
+           col < pixels[0].length - 1; col++) {
         leftPixel = pixels[row][col];
-        rightPixel = pixels[row][col+1];
+        rightPixel = pixels[row][col + 1];
         rightColor = rightPixel.getColor();
-        if (leftPixel.colorDistance(rightColor) > 
-            edgeDist)
+        if (leftPixel.colorDistance(rightColor) >
+                edgeDist)
           leftPixel.setColor(Color.BLACK);
         else
           leftPixel.setColor(Color.WHITE);
       }
+    }
+    int x = 0;
+    for (int col = 0; col < pixels[x].length-1; col++)
+    {
+      for (int row = x; row < pixels.length; row++)
+      {
+        topPixel = pixels[row][col];
+        bottomPixel = pixels[row+1][col];
+        bottomColor = bottomPixel.getColor();
+        if (topPixel.colorDistance(bottomColor) >
+                edgeDist)
+          bottomPixel.setColor(Color.BLACK);
+        else
+          bottomPixel.setColor(Color.WHITE);
+      }
+      x+=1;
     }
   }
   

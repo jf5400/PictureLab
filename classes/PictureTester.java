@@ -135,15 +135,21 @@ public class PictureTester
     /** Method to test myCollage*/
     public static void testmyCollage()
     {
-        Picture beach = new Picture("beach.jpg");
-        Picture other = new Picture("flower1.jpg");
-        Picture another = new Picture("flower2.jpg");
-        beach.explore();
+      Picture pic1 = new Picture("caterpillar.jpg");
+      Picture pic2 = new Picture("flower1.jpg");
+      Picture pic3 = new Picture("flower2.jpg");
+      Picture base = new Picture("beach.jpg");
+      base.explore();
 
-        beach.myCollage(beach, other, another);
-        beach.explore();
-        other.explore();
-        another.explore();
+      pic1.mirrorHorizontal();
+      pic2.zeroBlue();
+      pic3.grayscale();
+
+      base.copy(pic1, 0, 0, 150, 150);
+      base.copy(pic2, 150, 150, 300, 300);
+      base.copy(pic3, 300, 300, 450, 450);
+      base.explore();
+
     }
 
     /** Main method for testing.  Every class can have a main
@@ -170,8 +176,8 @@ public class PictureTester
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
-      testmyCollage();
-    //testEdgeDetection();
+    // testmyCollage();
+    testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
