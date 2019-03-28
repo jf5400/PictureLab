@@ -393,6 +393,8 @@ public class Picture extends SimplePicture
     for (int row = 0; row < pixels.length; row++) {
       for (int col = 0;
            col < pixels[0].length - 1; col++) {
+
+        // Left to right
         leftPixel = pixels[row][col];
         rightPixel = pixels[row][col + 1];
         rightColor = rightPixel.getColor();
@@ -403,21 +405,20 @@ public class Picture extends SimplePicture
           leftPixel.setColor(Color.WHITE);
       }
     }
-    int x = 0;
-    for (int col = 0; col < pixels[x].length-1; col++)
-    {
-      for (int row = x; row < pixels.length; row++)
-      {
-        topPixel = pixels[row][col];
-        bottomPixel = pixels[row+1][col];
-        bottomColor = bottomPixel.getColor();
-        if (topPixel.colorDistance(bottomColor) >
-                edgeDist)
-          bottomPixel.setColor(Color.BLACK);
-        else
-          bottomPixel.setColor(Color.WHITE);
-      }
-      x+=1;
+
+      for (int row = 0; row < pixels.length-1; row++) {
+        for (int col = 0;
+             col < pixels[0].length; col++) {
+          // Top to bottom
+          topPixel = pixels[row][col];
+          bottomPixel = pixels[row + 1][col];
+          bottomColor = bottomPixel.getColor();
+          if (topPixel.colorDistance(bottomColor) >
+                  edgeDist)
+            topPixel.setColor(Color.BLACK);
+          else
+            topPixel.setColor(Color.WHITE);
+        }
     }
   }
   
